@@ -1,15 +1,10 @@
 <template>
   <div>
-    <el-button type="primary">按钮</el-button>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Vue from "vue"
-import {Button} from "element-ui"
-
-Vue.use(Button)
-
 export default {
 }
 </script>

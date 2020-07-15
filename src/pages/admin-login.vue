@@ -9,16 +9,13 @@
       <el-main>
         <el-form>
           <el-form-item>
-            <h1><i class="el-icon-s-promotion"></i>用户登陆</h1>
+            <h1><i class="el-icon-s-promotion"></i>管理员登陆</h1>
           </el-form-item>
           <el-form-item>
             <el-input placeholder="请输入登陆账号" v-model="account" suffix-icon="el-icon-user-solid"></el-input>
           </el-form-item>
           <el-form-item>
             <el-input placeholder="请输入登陆密码" show-password v-model="pwd" suffix-icon="el-icon-lock"></el-input>
-          </el-form-item>
-          <el-form-item class="register">
-            <router-link to>我要注册</router-link>
           </el-form-item>
           <el-form-item>
               <el-button type="success">登陆</el-button>

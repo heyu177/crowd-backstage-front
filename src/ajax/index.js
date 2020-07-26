@@ -3,10 +3,6 @@ import qs from "qs"
 
 const baseUrl = "/api"
 
-/* const instance = axios.create({
-    transformRequest: [data => qs.stringify(data)],
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-}) */
 const config={
     transformRequest: [data => qs.stringify(data)],
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' }

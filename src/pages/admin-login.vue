@@ -7,20 +7,25 @@
         </h1>
       </el-header>
       <el-main>
-        <el-form :rules="rules" ref="form">
+        <el-form :rules="rules" :model="ruleForm" ref="form">
           <el-form-item>
             <h1>
               <i class="el-icon-s-promotion"></i>管理员登陆
             </h1>
           </el-form-item>
+          <h3>{{message}}</h3>
           <el-form-item prop="loginAcct">
-            <el-input placeholder="请输入登陆账号" v-model="loginAcct" suffix-icon="el-icon-user-solid"></el-input>
+            <el-input
+              placeholder="请输入登陆账号"
+              v-model="ruleForm.loginAcct"
+              suffix-icon="el-icon-user-solid"
+            ></el-input>
           </el-form-item>
           <el-form-item prop="userPswd">
             <el-input
               placeholder="请输入登陆密码"
               show-password
-              v-model="userPswd"
+              v-model="ruleForm.userPswd"
               suffix-icon="el-icon-lock"
             ></el-input>
           </el-form-item>
@@ -57,23 +62,36 @@ Vue.use(Button);
 export default {
   data() {
     return {
-      loginAcct: "",
-      userPswd: "",
+      ruleForm: {
+        loginAcct: "",
+        userPswd: ""
+      },
       rules: {
         loginAcct: [
           { required: true, message: "账号不能为空", trigger: "blur" }
         ],
         userPswd: [{ required: true, message: "密码不能为空", trigger: "blur" }]
-      }
+      },
+      message:""
     };
   },
   methods: {
     login() {
-      adminLogin({
-        loginAcct: this.loginAcct,
-        userPswd: this.userPswd
-      }).then(response => {
-        console.log(response);
+      this.$refs.form.validate(valid => {
+        if (valid) {
+          adminLogin({
+            loginAcct: this.ruleForm.loginAcct,
+            userPswd: this.ruleForm.userPswd
+          }).then(response => {
+            if (response.data.result=="success") {
+              this.$router.push("/main");
+            }else if (response.data.result=="failed") {
+              this.message=response.data.message;
+            }
+          });
+        }else{
+          return false;
+        }
       });
     }
   }

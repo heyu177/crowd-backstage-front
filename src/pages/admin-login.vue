@@ -1,5 +1,4 @@
 <template>
-  <div>
     <el-container>
       <el-header>
         <h1>
@@ -35,7 +34,6 @@
         </el-form>
       </el-main>
     </el-container>
-  </div>
 </template>
 
 <script>
@@ -47,7 +45,7 @@ import {
   Form,
   Input,
   FormItem,
-  Button
+  Button,
 } from "element-ui";
 import { adminLogin } from "../ajax/index.js";
 
@@ -64,83 +62,93 @@ export default {
     return {
       ruleForm: {
         loginAcct: "",
-        userPswd: ""
+        userPswd: "",
       },
       rules: {
         loginAcct: [
-          { required: true, message: "账号不能为空", trigger: "blur" }
+          { required: true, message: "账号不能为空", trigger: "blur" },
         ],
-        userPswd: [{ required: true, message: "密码不能为空", trigger: "blur" }]
+        userPswd: [
+          { required: true, message: "密码不能为空", trigger: "blur" },
+        ],
       },
-      message:""
+      message: "",
     };
   },
   methods: {
     login() {
-      this.$refs.form.validate(valid => {
+      this.$refs.form.validate((valid) => {
         if (valid) {
           adminLogin({
             loginAcct: this.ruleForm.loginAcct,
-            userPswd: this.ruleForm.userPswd
-          }).then(response => {
-            if (response.data.result=="success") {
+            userPswd: this.ruleForm.userPswd,
+          }).then((response) => {
+            if (response.data.result == "success") {
               this.$router.push("/main");
-            }else if (response.data.result=="failed") {
-              this.message=response.data.message;
+            } else if (response.data.result == "failed") {
+              this.message = response.data.message;
             }
           });
-        }else{
+        } else {
           return false;
         }
       });
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="less" scoped>
-.el-header {
-  background: #222;
-  padding: 0 50px;
-  h1 {
-    margin: 0;
-    height: 100%;
-    .title {
-      color: #9d9d9d;
-      text-decoration: none;
-      display: inline-block;
+.el-container {
+  background: #eee;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  .el-header {
+    background: #222;
+    padding: 0 50px;
+    h1 {
+      margin: 0;
       height: 100%;
-      line-height: 60px;
-      font-size: 32px;
-      &:hover {
-        color: #fff;
-      }
-    }
-  }
-}
-.el-form {
-  width: 500px;
-  margin: 0 auto;
-  .el-form-item {
-    &.register {
-      text-align: right;
-      a {
+      .title {
+        color: #9d9d9d;
         text-decoration: none;
-        color: #337ab7;
+        display: inline-block;
+        height: 100%;
+        line-height: 60px;
+        font-size: 32px;
         &:hover {
-          text-decoration: underline;
-          color: #23527c;
+          color: #fff;
         }
       }
     }
-    h1 {
-      margin: 0 auto;
-      text-align: left;
-      font-size: 30px;
-      font-weight: normal;
-    }
-    .el-button {
-      width: 100%;
+  }
+  .el-form {
+    width: 500px;
+    margin: 0 auto;
+    .el-form-item {
+      &.register {
+        text-align: right;
+        a {
+          text-decoration: none;
+          color: #337ab7;
+          &:hover {
+            text-decoration: underline;
+            color: #23527c;
+          }
+        }
+      }
+      h1 {
+        margin: 0 auto;
+        text-align: left;
+        font-size: 30px;
+        font-weight: normal;
+      }
+      .el-button {
+        width: 100%;
+      }
     }
   }
 }

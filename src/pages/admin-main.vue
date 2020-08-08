@@ -30,7 +30,9 @@
       <el-aside>
         <Nav />
       </el-aside>
-      <el-main>ccc</el-main>
+      <el-main>
+        <router-view></router-view>
+      </el-main>
     </el-container>
   </el-container>
 </template>
@@ -96,11 +98,14 @@ export default {
   .el-container {
     .el-aside {
       background: #f5f5f5;
-      padding: 12px;
+      padding: 15px;
       position: absolute;
       left: 0;
       top: 60px;
       bottom: 0;
+    }
+    .el-main{
+      margin-left: 300px;
     }
   }
 }

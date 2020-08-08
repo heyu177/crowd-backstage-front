@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import AdminLogin from "../pages/admin-login.vue"
 import AdminMain from "../pages/admin-main.vue"
 import Test from "../pages/test.vue"
+import ControllerPanel from "../pages/controller-panel.vue"
 
 export default new VueRouter({
     routes:[
@@ -12,7 +13,13 @@ export default new VueRouter({
         },
         {
             path:"/main",
-            component:AdminMain
+            component:AdminMain,
+            children:[
+                {
+                    path:"/",
+                    component:ControllerPanel
+                }
+            ]
         },
         {
             path:"/test",

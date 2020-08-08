@@ -1,12 +1,8 @@
 <template>
   <el-collapse>
-    <el-collapse-item>
-      <template slot="title">
-        <h3>
-          <i class="el-icon-aim"></i> 控制面板
-        </h3>
-      </template>
-    </el-collapse-item>
+    <h3>
+      <i class="el-icon-aim"></i> 控制面板
+    </h3>
     <el-collapse-item>
       <template slot="title">
         <h3>
@@ -26,7 +22,7 @@
         </el-menu-item>
       </el-menu>
     </el-collapse-item>
-     <el-collapse-item>
+    <el-collapse-item>
       <template slot="title">
         <h3>
           <i class="el-icon-check"></i> 业务审核
@@ -76,13 +72,9 @@
         </el-menu-item>
       </el-menu>
     </el-collapse-item>
-    <el-collapse-item>
-      <template slot="title">
-        <h3>
-          <i class="el-icon-s-order"></i> 参数管理
-        </h3>
-      </template>
-    </el-collapse-item>
+    <h3>
+      <i class="el-icon-s-order"></i> 参数管理
+    </h3>
   </el-collapse>
 </template>
 
@@ -98,18 +90,20 @@ export default {};
 </script>
 
 <style lang="less" scoped>
-.el-collapse-item {
+.el-collapse {
   h3 {
     font-size: 15px;
     font-weight: normal;
+    background: #fff;
+    margin: 0;
+    padding: 10px 0;
   }
-  &:nth-child(1) {
-    h3 {
+  & > h3 {
+    &:first-child {
       color: #338acc;
+      border-bottom: 1px solid #eff1f7;
     }
-  }
-  &:nth-child(5) {
-    h3 {
+    &:last-child {
       color: #338acc;
     }
   }

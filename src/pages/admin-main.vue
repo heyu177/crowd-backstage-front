@@ -7,9 +7,10 @@
           <i class="el-icon-question"></i>帮助
         </el-button>
       </div>
-      <el-dropdown>
+      <el-dropdown @command="logout">
         <el-button type="success">
-          <i class="el-icon-user-solid"></i>张三
+          <i class="el-icon-user-solid"></i>
+          {{adminName}}
           <i class="el-icon-caret-bottom"></i>
         </el-button>
         <el-dropdown-menu slot="dropdown">
@@ -19,7 +20,7 @@
           <el-dropdown-item>
             <i class="el-icon-chat-dot-square"></i>消息
           </el-dropdown-item>
-          <el-dropdown-item divided>
+          <el-dropdown-item divided command="logout">
             <i class="el-icon-switch-button"></i>退出系统
           </el-dropdown-item>
         </el-dropdown-menu>
@@ -41,6 +42,7 @@
 import Vue from "vue";
 import { Container, Input, Dropdown, Button } from "element-ui";
 import Nav from "../components/nav.vue";
+import { getAdminName, doLogout } from "../ajax/index.js";
 
 Vue.use(Container);
 Vue.use(Input);
@@ -51,10 +53,29 @@ export default {
   data() {
     return {
       search: "",
+      adminName: "",
     };
   },
   components: {
     Nav,
+  },
+  mounted() {
+    getAdminName().then((response) => {
+      if (response.data.result == "success") {
+        this.adminName = response.data.data;
+      }
+    });
+  },
+  methods: {
+    logout(command) {
+      if (command == "logout") {
+        doLogout().then((response) => {
+          if (response.data.result == "success") {
+            this.$router.push("/");
+          }
+        });
+      }
+    },
   },
 };
 </script>
@@ -104,7 +125,7 @@ export default {
       top: 60px;
       bottom: 0;
     }
-    .el-main{
+    .el-main {
       margin-left: 300px;
     }
   }

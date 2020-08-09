@@ -1,8 +1,10 @@
 <template>
   <el-collapse>
-    <h3>
-      <i class="el-icon-aim"></i> 控制面板
-    </h3>
+    <router-link to="/main">
+      <h3>
+        <i class="el-icon-aim"></i> 控制面板
+      </h3>
+    </router-link>
     <el-collapse-item>
       <template slot="title">
         <h3>
@@ -72,9 +74,11 @@
         </el-menu-item>
       </el-menu>
     </el-collapse-item>
-    <h3>
-      <i class="el-icon-s-order"></i> 参数管理
-    </h3>
+    <router-link to="">
+      <h3>
+        <i class="el-icon-s-order"></i> 参数管理
+      </h3>
+    </router-link>
   </el-collapse>
 </template>
 
@@ -98,13 +102,18 @@ export default {};
     margin: 0;
     padding: 10px 0;
   }
-  & > h3 {
+  & > a {
+    text-decoration: none;
+    border-bottom: 1px solid #eff1f7;
     &:first-child {
-      color: #338acc;
-      border-bottom: 1px solid #eff1f7;
+      h3 {
+        color: #338acc;
+      }
     }
     &:last-child {
-      color: #338acc;
+      h3 {
+        color: #338acc;
+      }
     }
   }
 }
